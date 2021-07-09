@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  cartk8s.api:
+    image: ${DOCKER_REGISTRY-}cartk8sapi
+    build:
+      context: .
+      dockerfile: Cart/Dockerfile
+  customersk8s.api:
+    image: ${DOCKER_REGISTRY-}customersk8sapi
+    build:
+      context: .
+      dockerfile: Customers.Api/Dockerfile
+
+volumes:
+  cart_disk:
+  customer_disk:

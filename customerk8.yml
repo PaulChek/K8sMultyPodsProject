@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customer-pod   
+  template:
+    metadata:
+      labels:
+        app: customer-pod
+    spec:
+      containers:
+        - name: customer-container
+          image: paulchek/multyk8project_customer:2
+          env:
+            - name: ConnectionStrings__CartHost
+              value: "http://$(CART_SERVICE_SERVICE_HOST):8001"    

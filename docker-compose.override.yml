@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  cartk8s.api:
+    container_name: cartk8s.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8001:80"
+    volumes:
+      - cart_disk:/app/Db
+
+  customersk8s.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings:CartHost=http://cartk8s.api
+    ports:
+      - "8000:80"
+    volumes:
+      - customer_disk:/app/Db
+
